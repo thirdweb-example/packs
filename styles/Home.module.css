@@ -19,38 +19,6 @@
   padding: 1rem;
 }
 
-.header {
-  background-color: #262936;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 72px;
-  margin-bottom: 96px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.left {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  margin-left: 5%;
-}
-
-.right {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  margin-right: 5%;
-}
-
 .secondaryButton {
   cursor: pointer;
   text-align: center;
@@ -100,72 +68,10 @@
   margin-top: 2%;
 }
 
-.h1 {
-  margin-bottom: 0px;
-}
-
-.explain {
-  font-size: 1.125rem;
-}
-
 .divider {
   width: 50%;
   border-color: grey;
   opacity: 0.25;
-}
-
-.smallDivider {
-  width: 25%;
-  border-color: grey;
-  margin-top: 64px;
-  opacity: 0.25;
-}
-
-.contractBoxGrid {
-  width: 1200px;
-  max-width: 95vw;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 1%;
-  margin-top: 28px;
-  flex-wrap: wrap;
-}
-
-.contractBox {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  cursor: pointer;
-  width: 32%;
-  height: 200px;
-  color: rgba(255, 255, 255, 0.9);
-  margin-top: 16px;
-  padding-top: 25px;
-}
-
-/* Between 700px and 900px */
-@media screen and (min-width: 700px) and (max-width: 900px) {
-  .contractBoxGrid {
-    gap: 2%;
-  }
-
-  .contractBox {
-    width: 48%;
-  }
-}
-
-@media screen and (max-width: 699px) {
-  .contractBoxGrid {
-    gap: 2%;
-  }
-
-  .contractBox {
-    width: 98%;
-  }
 }
 
 .nftBoxGrid {
@@ -224,11 +130,6 @@
 
 .spacerBottom {
   margin-bottom: 16px;
-}
-
-.headerLogo {
-  width: 135px;
-  cursor: pointer;
 }
 
 .detailPageContainer {
