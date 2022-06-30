@@ -25,7 +25,7 @@ To create your own version of this template, you can use the following steps:
 Use our CLI to create a copy of this repo on your local machine:
 
 ```bash
-npx create-tw-app --example packs
+npx thirdweb create --example packs
 ```
 
 ### 2. Deploy some contracts!
