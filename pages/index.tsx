@@ -10,8 +10,8 @@ import { useState } from "react";
 import ERC1155RewardBox from "../components/ERC1155RewardBox";
 import ERC20RewardBox from "../components/ERC20RewardBox";
 import styles from "../styles/Home.module.css";
-import type { PackRewardsOutput } from "@thirdweb-dev/sdk/dist/src/schema/tokens/pack";
 import type { NextPage } from "next";
+import PackRewardsOutput from "../types/PackRewardsOutput";
 
 const Home: NextPage = () => {
   const address = useAddress();
