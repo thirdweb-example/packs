@@ -14,7 +14,7 @@ We can open these loot boxes to reveal the tokens inside!
 - [**Edition contract**](https://portal.thirdweb.com/pre-built-contracts/edition): To create NFTs with multiple copies and bundle them into the packs.
 - [**Token contract**](https://portal.thirdweb.com/pre-built-contracts/token): To create our own token that we can bundle into the packs.
 - [**React SDK**](https://docs.thirdweb.com/react): to enable users to connect their wallets with the [useMetamask](https://portal.thirdweb.com/react/react.usemetamask) hook, and access hooks such as [usePack](https://portal.thirdweb.com/react/react.usePack) to interact with the Pack contract.
-- [**thirdweb TypeScript SDK**](https://docs.thirdweb.com/typescript): To write [scripts](./scripts) that create and deploy our pack contract, and bundle the tokens into the packs.
+- [**TypeScript SDK**](https://docs.thirdweb.com/typescript): To write [scripts](./scripts) that create and deploy our pack contract, and bundle the tokens into the packs.
 
 ## Using This Repo
 
