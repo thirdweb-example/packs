@@ -17,6 +17,7 @@ export default function ERC20RewardBox({ reward }: Props) {
     <div className={styles.nftBox}>
       {data && (
         <>
+          {/* @ts-ignore */}
           <ThirdwebNftMedia metadata={data} className={styles.nftMedia} />
           <h3>{data?.name}</h3>
           <p>Amount: {reward.quantityPerReward}</p>
