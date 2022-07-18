@@ -1,7 +1,6 @@
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 import dotenv from "dotenv";
 dotenv.config();
-// fs
 import fs from "fs";
 
 (async () => {
@@ -29,7 +28,7 @@ import fs from "fs";
 
   // Upload the Chest to IPFS
   const ipfsHash = await sdk.storage.upload(chestFile);
-  const url = `${ipfsHash.baseUri}`;
+  const url = ipfsHash.uris[0];
 
   console.log("Uploaded chest asset to IPFS");
 

@@ -1,47 +1,40 @@
 import {
+  ThirdwebNftMedia,
   useAddress,
   useDisconnect,
   useMetamask,
-  usePack,
   useOwnedNFTs,
-  ThirdwebNftMedia,
+  usePack,
 } from "@thirdweb-dev/react";
+import { PackRewards } from "@thirdweb-dev/sdk/dist/src/schema";
+import type { NextPage } from "next";
 import { useState } from "react";
 import ERC1155RewardBox from "../components/ERC1155RewardBox";
 import ERC20RewardBox from "../components/ERC20RewardBox";
 import styles from "../styles/Home.module.css";
-import type { NextPage } from "next";
-import PackRewardsOutput from "../types/PackRewardsOutput";
 
 const Home: NextPage = () => {
   const address = useAddress();
   const connectWithMetamask = useMetamask();
   const disconnectWallet = useDisconnect();
 
-  const [rewards, setRewards] = useState<PackRewardsOutput>();
-
-  const pack = usePack("0x0Aee160411473f63be2DfF2865E81A1D59636C97");
+  const pack = usePack("0x697786E18F370b04e96497113016a2c8c85B17F4");
 
   const { data: nfts, isLoading } = useOwnedNFTs(pack, address);
 
+  const [openedPackRewards, setOpenedPackRewards] = useState<PackRewards>();
+
   async function open() {
-    pack?.interceptor.overrideNextTransaction(() => ({
-      gasLimit: 500000,
-    }));
-
-    const openedRewards = await pack?.open(0, 1); // 0 is tokenId here
-
-    setRewards(openedRewards as PackRewardsOutput);
-    console.log(openedRewards);
+    const openedRewards = await pack?.open(0, 1);
+    console.log("Opened rewards:", openedRewards);
+    setOpenedPackRewards(openedRewards);
   }
 
   return (
-    <div className={styles.container}>
+    <div>
       {address ? (
         <>
-          <a onClick={disconnectWallet} className={styles.secondaryButton}>
-            Disconnect Wallet
-          </a>
+          <button onClick={disconnectWallet}>Disconnect Wallet</button>
           <p>Your address: {address}</p>
 
           <div className={styles.container} style={{ marginTop: 0 }}>
@@ -57,14 +50,11 @@ const Home: NextPage = () => {
                         // @ts-ignore
                         metadata={{
                           ...nft.metadata,
-                          // I messed up the metadata for the NFT, so need to remove trailing .png (You don't need this)
-                          image: nft?.metadata?.image?.slice(0, -4),
+                          image: `${nft.metadata.image}/0`,
                         }}
                         className={styles.nftMedia}
                       />
                       <h3>{nft.metadata.name}</h3>
-                      {/* @ts-ignore */}
-                      <p>Quantity: {nft.supply.toNumber()}</p>
 
                       <button
                         className={`${styles.mainButton} ${styles.spacerBottom}`}
@@ -79,38 +69,40 @@ const Home: NextPage = () => {
                 <p>Loading...</p>
               )}
             </div>
+          </div>
 
-            <hr className={styles.divider} />
+          <hr className={styles.divider} />
 
-            <h2>Opened Rewards</h2>
+          <h2>Opened Rewards</h2>
 
-            {rewards && Object.entries(rewards.erc20Rewards)?.length > 0 && (
+          {openedPackRewards &&
+            openedPackRewards?.erc20Rewards &&
+            openedPackRewards?.erc20Rewards?.length > 0 && (
               <>
                 <h3>ERC-20 Tokens</h3>
                 <div className={styles.nftBoxGrid}>
-                  {rewards.erc20Rewards.map((reward, i) => (
+                  {openedPackRewards?.erc20Rewards?.map((reward, i) => (
                     <ERC20RewardBox reward={reward} key={i} />
                   ))}
                 </div>
               </>
             )}
 
-            {rewards && Object.entries(rewards.erc1155Rewards)?.length && (
+          {openedPackRewards &&
+            openedPackRewards?.erc1155Rewards &&
+            openedPackRewards?.erc1155Rewards?.length > 0 && (
               <>
                 <h3>ERC-1155 Tokens</h3>
                 <div className={styles.nftBoxGrid}>
-                  {rewards.erc1155Rewards.map((reward, i) => (
+                  {openedPackRewards?.erc1155Rewards.map((reward, i) => (
                     <ERC1155RewardBox reward={reward} key={i} />
                   ))}
                 </div>
               </>
             )}
-          </div>
         </>
       ) : (
-        <button onClick={connectWithMetamask} className={styles.mainButton}>
-          Connect Wallet
-        </button>
+        <button onClick={connectWithMetamask}>Connect with Metamask</button>
       )}
     </div>
   );
