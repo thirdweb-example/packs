@@ -154,3 +154,10 @@
 .noGapBottom {
   margin-bottom: 0px;
 }
+
+.centered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

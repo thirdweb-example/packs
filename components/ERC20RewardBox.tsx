@@ -1,4 +1,8 @@
-import { ThirdwebNftMedia, useMetadata, useToken } from "@thirdweb-dev/react";
+import {
+  ThirdwebNftMedia,
+  useMetadata,
+  useContract,
+} from "@thirdweb-dev/react";
 import React from "react";
 import styles from "../styles/Home.module.css";
 
@@ -10,7 +14,7 @@ type Props = {
 };
 
 export default function ERC20RewardBox({ reward }: Props) {
-  const token = useToken(reward.contractAddress);
+  const { contract: token } = useContract(reward.contractAddress);
   const { data } = useMetadata(token);
 
   return (

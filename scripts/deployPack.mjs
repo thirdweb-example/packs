@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 (async () => {
-  const sdk = ThirdwebSDK.fromPrivateKey(process.env.PRIVATE_KEY, "mumbai");
+  const sdk = ThirdwebSDK.fromPrivateKey(process.env.PRIVATE_KEY, "goerli");
 
   const packAddress = await sdk.deployer.deployPack({
     name: "Treasure Chests",

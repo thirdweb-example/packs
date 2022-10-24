@@ -8,17 +8,17 @@ import fs from "fs";
   const tokenAddress = "0x270d0f9DA22332F33159337E3DE244113a1C863C";
   const editionAddress = "0xb4A48c837aB7D0e5C85eA2b0D9Aa11537340Fa17";
 
-  const sdk = ThirdwebSDK.fromPrivateKey(process.env.PRIVATE_KEY, "mumbai");
+  const sdk = ThirdwebSDK.fromPrivateKey(process.env.PRIVATE_KEY, "goerli");
 
-  const pack = sdk.getPack(packAddress);
+  const pack = await sdk.getContract(packAddress);
 
   // Set approval for the pack contract to act upon token and edition contracts
-  const token = sdk.getToken(tokenAddress);
+  const token = await sdk.getContract(tokenAddress);
   await token.setAllowance(packAddress, 100);
 
   console.log("Set approval for token");
 
-  const edition = sdk.getEdition(editionAddress);
+  const edition = await sdk.getContract(editionAddress);
   await edition.setApprovalForAll(packAddress, true);
 
   console.log("Set Approval for edition");
@@ -27,8 +27,7 @@ import fs from "fs";
   const chestFile = fs.readFileSync("./scripts/chest.png");
 
   // Upload the Chest to IPFS
-  const ipfsHash = await sdk.storage.upload(chestFile);
-  const url = ipfsHash.uris[0];
+  const uri = await storage.upload(chestFile);
 
   console.log("Uploaded chest asset to IPFS");
 
@@ -39,7 +38,7 @@ import fs from "fs";
       name: "Treasure Chest",
       description:
         "A chest containing tools and treasure to help you on your voyages.",
-      image: url,
+      image: uri,
     },
 
     // Gold coin ERC-20 Tokens

@@ -1,4 +1,4 @@
-import { ThirdwebNftMedia, useEdition, useNFT } from "@thirdweb-dev/react";
+import { ThirdwebNftMedia, useContract, useNFT } from "@thirdweb-dev/react";
 import { BigNumber } from "ethers";
 import React from "react";
 import styles from "../styles/Home.module.css";
@@ -12,7 +12,7 @@ type Props = {
 };
 
 export default function ERC115RewardBox({ reward }: Props) {
-  const edition = useEdition(reward.contractAddress);
+  const { contract: edition } = useContract(reward.contractAddress);
   const { data } = useNFT(edition, reward.tokenId);
 
   return (
