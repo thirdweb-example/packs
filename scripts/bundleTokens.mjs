@@ -13,12 +13,12 @@ import fs from "fs";
   const pack = await sdk.getContract(packAddress);
 
   // Set approval for the pack contract to act upon token and edition contracts
-  const token = await sdk.getContract(tokenAddress);
+  const token = await sdk.getContract(tokenAddress, 'token');
   await token.setAllowance(packAddress, 100);
 
   console.log("Set approval for token");
 
-  const edition = await sdk.getContract(editionAddress);
+  const edition = await sdk.getContract(editionAddress, 'edition');
   await edition.setApprovalForAll(packAddress, true);
 
   console.log("Set Approval for edition");
