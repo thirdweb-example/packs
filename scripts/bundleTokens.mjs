@@ -10,7 +10,7 @@ import fs from "fs";
 
   const sdk = ThirdwebSDK.fromPrivateKey(process.env.PRIVATE_KEY, "goerli");
 
-  const pack = await sdk.getContract(packAddress);
+  const pack = await sdk.getContract(packAddress, 'pack');
 
   // Set approval for the pack contract to act upon token and edition contracts
   const token = await sdk.getContract(tokenAddress, 'token');
