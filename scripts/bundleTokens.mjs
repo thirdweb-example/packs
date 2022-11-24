@@ -2,6 +2,7 @@ import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 import dotenv from "dotenv";
 dotenv.config();
 import fs from "fs";
+import { ThirdwebStorage } from "@thirdweb-dev/storage";
 
 (async () => {
   const packAddress = "0x0Aee160411473f63be2DfF2865E81A1D59636C97";
@@ -27,6 +28,7 @@ import fs from "fs";
   const chestFile = fs.readFileSync("./scripts/chest.png");
 
   // Upload the Chest to IPFS
+  const storage = new ThirdwebStorage();
   const uri = await storage.upload(chestFile);
 
   console.log("Uploaded chest asset to IPFS");
