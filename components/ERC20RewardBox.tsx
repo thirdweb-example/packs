@@ -2,6 +2,7 @@ import {
   ThirdwebNftMedia,
   useMetadata,
   useContract,
+  CustomContractMetadata,
 } from "@thirdweb-dev/react";
 import React from "react";
 import styles from "../styles/Home.module.css";
@@ -23,7 +24,7 @@ export default function ERC20RewardBox({ reward }: Props) {
         <>
           {/* @ts-ignore */}
           <ThirdwebNftMedia metadata={data} className={styles.nftMedia} />
-          <h3>{data?.name}</h3>
+          <h3>{(data as CustomContractMetadata).name}</h3>
           <p>Amount: {reward.quantityPerReward}</p>
         </>
       )}
